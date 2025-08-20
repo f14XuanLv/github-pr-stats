@@ -1,0 +1,943 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Custom Properties for consistent colors */
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f6f8fa;
+  --color-bg-tertiary: #24292f;
+  --color-border-default: #d1d9e0;
+  --color-border-muted: #30363d;
+  --color-text-primary: #24292f;
+  --color-text-secondary: #656d76;
+  --color-text-on-dark: #e6edf3;
+  --color-accent-primary: #0969da;
+  --color-accent-success: #1f883d;
+  --color-accent-success-hover: #1a7f37;
+  --color-accent-error: #d1242f;
+  --color-accent-disabled: #8c959f;
+  --color-dark-bg-primary: #0d1117;
+  --color-dark-bg-secondary: #21262d;
+  --border-radius-default: 6px;
+  --border-radius-large: 8px;
+  --border-radius-circle: 50%;
+  --transition-default: all 0.2s;
+  --shadow-default: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mode Notice Styles */
+.mode-notice {
+  background-color: #e6f3ff;
+  border: 1px solid #0969da;
+  border-radius: var(--border-radius-default);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.mode-notice p {
+  margin: 0 0 4px 0;
+  font-size: 0.875rem;
+  color: #0969da;
+}
+
+.mode-notice p:first-child {
+  font-weight: 600;
+}
+
+.mode-notice p:last-child {
+  margin-bottom: 0;
+  font-weight: normal;
+  color: #656d76;
+}
+
+/* Common Button Base Styles */
+.btn-base {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+  transition: var(--transition-default);
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-base:disabled {
+  cursor: not-allowed;
+  background: var(--color-accent-disabled);
+}
+
+/* Common Interactive States */
+.btn-interactive:hover {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+.btn-interactive:focus {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+.btn-interactive:not(:hover):not(:focus) {
+  background: none;
+  border-color: var(--color-border-default);
+  color: var(--color-text-secondary);
+}
+
+.app {
+  /* 使用 dvh 单位来解决移动端和任务栏遮挡问题 */
+  height: 100vh;
+  height: 100dvh; /* 动态视口高度，会考虑浏览器UI元素 */
+  /* 作为后备方案，使用 JavaScript 计算的 CSS 变量 */
+  height: var(--app-height, 100vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-secondary);
+  overflow: hidden; /* 防止整体滚动 */
+}
+
+/* Header Styles */
+.app-header {
+  background: var(--color-bg-tertiary);
+  color: var(--color-bg-primary);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--color-border-muted);
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.github-link {
+  background: none;
+  border: none;
+  color: var(--color-bg-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-default);
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 2rem;
+}
+
+.github-link:hover {
+  background: var(--color-border-muted);
+}
+
+/* Main Layout */
+.app-main {
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+}
+
+.resizable-layout {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.left-panel {
+  background: var(--color-bg-primary);
+  border-right: 1px solid var(--color-border-default);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.right-panel {
+  background: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.left-panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.parameter-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.url-section {
+  flex-shrink: 0;
+  padding: 1rem 1.5rem 1rem 0.75rem; /* 减少上下 padding */
+  border-top: 1px solid var(--color-border-default);
+  background: var(--color-bg-primary);
+}
+
+.right-panel-content {
+  flex: 1;
+  display: flex;
+  align-items: stretch; /* 让子元素占满高度 */
+  justify-content: stretch; /* 让子元素占满宽度 */
+  padding: 0; /* 移除 padding，在子元素中设置 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* Resize Handle */
+.resize-handle {
+  width: 4px;
+  cursor: col-resize;
+  background: var(--color-border-default);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.resize-handle:hover,
+.resize-handle.resizing {
+  background: var(--color-accent-primary);
+}
+
+.resize-handle-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: var(--color-border-default);
+  transform: translateX(-50%);
+}
+
+/* Parameter Debugger Styles */
+.parameter-debugger {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.param-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.param-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.param-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.param-group label {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.param-input,
+.param-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: var(--color-bg-primary);
+  transition: border-color 0.2s;
+}
+
+.param-select {
+  cursor: pointer;
+}
+
+.param-input:focus,
+.param-select:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button .param-input {
+  flex: 1;
+}
+
+.generate-btn {
+  padding: 0.5rem 1rem;
+  background: var(--color-accent-success);
+  color: var(--color-bg-primary);
+  border: none;
+  border-radius: var(--border-radius-default);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.generate-btn:hover:not(:disabled),
+.generate-btn:focus:not(:disabled) {
+  background: var(--color-accent-success-hover);
+}
+
+.generate-btn:disabled {
+  background: var(--color-accent-disabled);
+  cursor: not-allowed;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checkbox-group.single {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  row-gap: 1rem;
+}
+
+.checkbox-group.single .checkbox-item {
+  margin-left: 0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item.primary {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.checkbox-subgroup {
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.checkbox-subgroup .checkbox-item {
+  margin-left: 0;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.checkbox-item input[type="checkbox"]:disabled + label {
+  color: #8c959f;
+}
+
+.checkbox-item label {
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.checkbox-item input[type="checkbox"]:disabled + label {
+  cursor: not-allowed;
+}
+
+/* Sort Container Styles */
+.sort-container {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.sort-selected-breadcrumb {
+  min-height: 60px;
+  padding: 1rem;
+  background: var(--color-bg-secondary);
+  border-bottom: 2px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.breadcrumb-card {
+  transition: all 0.2s ease;
+}
+
+.breadcrumb-card:hover {
+  filter: brightness(1.1);
+}
+
+.sort-divider {
+  height: 2px;
+  background: var(--color-border-default);
+  position: relative;
+}
+
+.sort-available {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sort-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.group-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sort-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-default);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  position: relative;
+}
+
+.sort-card.selected {
+  background: #0969da;
+  color: #ffffff;
+  cursor: grab;
+}
+
+.sort-card.selected:active {
+  cursor: grabbing;
+}
+
+.sort-card.available {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default);
+}
+
+.sort-card.available:hover {
+  background: #0969da;
+  color: #ffffff;
+}
+
+.drag-handle {
+  opacity: 0.7;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.25rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.remove-btn:hover {
+  opacity: 1;
+}
+
+.empty-state {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-size: 0.875rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px dashed var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  width: 100%;
+}
+
+/* URL Generator Styles */
+.url-generator {
+  display: flex;
+  flex-direction: column;
+}
+
+.url-generator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem; /* 减小 header 下方的间距 */
+  padding: 0.25rem 0; /* 减小 header 的上下内边距 */
+}
+
+.url-generator-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.collapse-btn {
+  padding: 0.25rem;
+}
+
+.collapse-btn,
+.copy-btn {
+  background: none;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-default);
+  color: var(--color-text-secondary);
+}
+
+.collapse-btn:hover,
+.collapse-btn:focus,
+.copy-btn:hover,
+.copy-btn:focus {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+.collapse-btn:not(:hover):not(:focus),
+.copy-btn:not(:hover):not(:focus) {
+  background: none;
+  border-color: var(--color-border-default);
+  color: var(--color-text-secondary);
+}
+
+.url-generator-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 减小各文本框之间的间距 */
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.url-generator-content.expanded {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.url-generator-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  gap: 0;
+}
+
+/* Compact header when collapsed */
+.url-generator:has(.url-generator-content.collapsed) .url-generator-header {
+  margin-bottom: 0;
+  padding: 0.25rem 0;
+}
+
+.url-generator:has(.url-generator-content.collapsed) .url-generator-header h3 {
+  font-size: 0.9375rem;
+}
+
+.url-placeholder {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+  border: 2px dashed var(--color-border-default);
+  border-radius: var(--border-radius-large);
+}
+
+.url-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* 减小标题和文本框之间的间距 */
+}
+
+.url-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.url-header h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  text-align: left;
+  padding-left: 0.25rem; /* 添加小的左侧内边距以对齐 */
+}
+
+.copy-btn {
+  padding: 0.25rem;
+}
+
+.url-content {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  padding: 0.375rem 0.75rem 0.375rem 0.5rem; /* 减少上下 padding */
+  overflow-x: auto;
+}
+
+.url-content code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.6875rem;
+  color: var(--color-text-primary);
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* SVG Preview Styles */
+.svg-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 防止整体溢出 */
+}
+
+.preview-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 确保内容不会溢出 */
+}
+
+.preview-placeholder,
+.preview-loading,
+.preview-error {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 2rem;
+}
+
+.placeholder-content,
+.error-content {
+  padding: 3rem 2rem;
+  border: 2px dashed var(--color-border-default);
+  border-radius: 12px;
+  background: var(--color-bg-primary);
+  max-width: 400px;
+}
+
+.placeholder-content h3,
+.error-content h3 {
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.placeholder-content p,
+.error-content p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.error-content {
+  border-color: var(--color-accent-error);
+  color: var(--color-accent-error);
+}
+
+.error-content h3 {
+  color: var(--color-accent-error);
+}
+
+.error-hint {
+  font-size: 0.75rem !important;
+  margin-top: 0.5rem !important;
+  opacity: 0.8;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--color-border-default);
+  border-top: 4px solid var(--color-accent-primary);
+  border-radius: var(--border-radius-circle);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.preview-svg {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto; /* 垂直滚动条 */
+  overflow-x: auto; /* 水平滚动条 */
+  /* 根据内容大小决定布局 */
+  display: flex;
+  align-items: safe center; /* safe 关键字确保内容超出时从顶部开始 */
+  justify-content: safe center; /* 水平居中，但内容超出时从左侧开始 */
+  padding: 2rem;
+  /* 自定义滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) var(--color-bg-secondary);
+}
+
+/* Webkit 浏览器的滚动条样式 */
+.preview-svg::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.preview-svg::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-default);
+}
+
+.preview-svg::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: var(--border-radius-default);
+  border: 2px solid var(--color-bg-secondary);
+}
+
+.preview-svg::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
+.svg-container {
+  /* 让内容自然流动，不限制尺寸 */
+  display: inline-block; /* 使容器根据内容大小自适应 */
+  flex-shrink: 0; /* 防止内容被压缩 */
+}
+
+.svg-container svg {
+  /* SVG 保持原始尺寸，不限制高度 */
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-default);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .checkbox-group.single {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .checkbox-subgroup {
+    flex-direction: column;
+  }
+  
+  .checkbox-group.single {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-header {
+    padding: 1rem;
+  }
+  
+  .header-title {
+    font-size: 1.25rem;
+  }
+  
+  .parameter-section {
+    padding: 1rem;
+  }
+  
+  .url-section {
+    padding: 0.75rem 1rem 0.75rem 0.5rem; /* 移动端也减少上下 padding */
+  }
+  
+  .right-panel-content {
+    padding: 0;
+  }
+  
+  .resize-handle {
+    display: none;
+  }
+  
+  .resizable-layout {
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .left-panel,
+  .right-panel {
+    width: 100% !important;
+  }
+  
+  .left-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-default);
+    flex: 0 0 60vh;
+    max-height: 60vh;
+    min-height: 300px;
+  }
+  
+  .right-panel {
+    flex: 1 1 auto;
+    min-height: 0; /* 允许收缩 */
+  }
+  
+  /* 移动端优化 SVG 预览 */
+  .preview-svg {
+    padding: 1rem;
+  }
+  
+  .svg-container svg {
+    max-width: calc(100vw - 2rem); /* 考虑 padding */
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0.75rem;
+  }
+  
+  .header-title {
+    font-size: 1.125rem;
+  }
+  
+  .parameter-section {
+    padding: 0.75rem;
+  }
+  
+  .left-panel {
+    flex: 0 0 50vh;
+    max-height: 50vh;
+  }
+  
+  /* 确保在小屏幕上 SVG 完全可见 */
+  .preview-svg {
+    padding: 0.5rem;
+  }
+  
+  .svg-container svg {
+    max-width: calc(100vw - 1rem);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+  
+  * {
+    transition: none !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure focus is removed when mouse leaves buttons */
+button:not(:focus-visible):focus {
+  outline: none;
+}
+
+/* Remove focus outline when using mouse */
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: var(--color-dark-bg-primary);
+    --color-bg-secondary: var(--color-dark-bg-secondary);
+    --color-text-primary: var(--color-text-on-dark);
+    --color-text-secondary: #8b949e;
+    --color-border-default: #30363d;
+    --color-border-muted: #21262d;
+  }
+  
+  body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+  
+  .app {
+    background: var(--color-bg-primary);
+  }
+}
+/* Enhanced checkbox styles for checked and disabled state */
+.checkbox-item input[type="checkbox"]:checked:disabled {
+  background-color: var(--color-accent-disabled);
+  border-color: var(--color-accent-disabled);
+  opacity: 0.6;
+}
