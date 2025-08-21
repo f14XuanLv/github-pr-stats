@@ -7,6 +7,31 @@ import type { APIParams } from './types.js'
 
 const CACHE_TTL_SECONDS = 3600
 
+function setSVGSecurityHeaders(res: VercelResponse, filename: string, content?: string) {
+  // 设置内容类型和编码
+  res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8')
+  
+  // 缓存控制（仅对成功响应设置）
+  if (content) {
+    res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300')
+    res.setHeader('ETag', `"${Buffer.from(content).toString('base64').slice(0, 8)}"`)
+  }
+  
+  // CORS设置
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  
+  // 安全头
+  res.setHeader('X-Content-Type-Options', 'nosniff')
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN')
+  res.setHeader('Content-Security-Policy', "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline';")
+  res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade')
+  
+  // 内容处置
+  res.setHeader('Content-Disposition', `inline; filename="${filename}"`)
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' })
@@ -49,9 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     
     const svg = SVGGenerator.generate(params.username, prs, stats, params, repos)
     
-    res.setHeader('Content-Type', 'image/svg+xml')
-    res.setHeader('Cache-Control', 'public, max-age=300')
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    setSVGSecurityHeaders(res, 'github-pr-stats.svg', svg)
     
     return res.status(200).send(svg)
 
@@ -68,7 +91,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     
     const errorSvg = generateErrorSvg(errorMessage)
-    res.setHeader('Content-Type', 'image/svg+xml')
+    
+    setSVGSecurityHeaders(res, 'github-pr-stats-error.svg')
+    
     return res.status(500).send(errorSvg)
   }
 }
