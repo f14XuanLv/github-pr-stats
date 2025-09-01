@@ -1,0 +1,99 @@
+<svg width="890" height="385" viewBox="0 0 890 385" xmlns="http://www.w3.org/2000/svg" style="background-color: #ffffff;">
+      <defs>
+        <style>
+          .title { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #24292f; }
+          .stats { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #24292f; }
+          .header { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #24292f; }
+          .text { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #24292f; }
+        </style>
+      </defs><text x="445" y="45" text-anchor="middle" class="title">
+      GitHub PR Contributions - f14xuanlv
+    </text><rect x="20" y="70" width="850" height="70" fill="#f6f8fa" stroke="#d0d7de" rx="6"></rect><g text-anchor="middle" dominant-baseline="central"><text x="445" y="92.5" class="stats" xml:space="preserve">
+        <tspan fill="#24292f">Total PRs: 6</tspan><tspan fill="#24292f">   |   </tspan><tspan fill="rgba(130, 80, 223, 1)">Merged PRs: 4</tspan><tspan fill="#24292f">   |   </tspan><tspan fill="#24292f">Showing PRs: 5</tspan>
+      </text><text x="445" y="117.5" class="stats" xml:space="preserve">
+        <tspan fill="#24292f">Repos(≥1 PR): 5</tspan><tspan fill="#24292f">   |   </tspan><tspan fill="rgba(130, 80, 223, 1)">Repos(≥1 Merged PR): 4</tspan><tspan fill="#24292f">   |   </tspan><tspan fill="#24292f">Showing Repos: 4</tspan>
+      </text></g><rect x="20" y="150" width="850" height="35" fill="#f6f8fa" stroke="#d0d7de"></rect><text x="28" y="172" class="header" text-anchor="start">
+        Repository
+      </text><line x1="220" y1="150" x2="220" y2="185" stroke="#d0d7de"></line><text x="292" y="172" class="header" text-anchor="end">
+        Stars
+      </text><line x1="300" y1="150" x2="300" y2="185" stroke="#d0d7de"></line><text x="308" y="172" class="header" text-anchor="start">
+        PR Title
+      </text><line x1="550" y1="150" x2="550" y2="185" stroke="#d0d7de"></line><text x="580" y="172" class="header" text-anchor="middle">
+        PR #
+      </text><line x1="610" y1="150" x2="610" y2="185" stroke="#d0d7de"></line><text x="650" y="172" class="header" text-anchor="middle">
+        Status
+      </text><line x1="690" y1="150" x2="690" y2="185" stroke="#d0d7de"></line><text x="735" y="172" class="header" text-anchor="middle">
+        Created
+      </text><line x1="780" y1="150" x2="780" y2="185" stroke="#d0d7de"></line><text x="825" y="172" class="header" text-anchor="middle">
+        Merged
+      </text><line x1="870" y1="150" x2="870" y2="185" stroke="#d0d7de"></line><rect x="20" y="190" width="850" height="35" fill="#ffffff" stroke="#d0d7de"></rect><text x="28" y="212" class="text" text-anchor="start">
+            RooCodeInc/Roo-Code
+          </text><line x1="220" y1="190" x2="220" y2="225" stroke="#d0d7de"></line><text x="292" y="212" class="text" text-anchor="end">
+            18,816 ⭐
+          </text><line x1="300" y1="190" x2="300" y2="225" stroke="#d0d7de"></line><text x="308" y="212" class="text" text-anchor="start">
+            fix: reset condensing state when...
+          </text><line x1="550" y1="190" x2="550" y2="225" stroke="#d0d7de"></line><text x="580" y="212" class="text" text-anchor="middle">
+            #6922
+          </text><line x1="610" y1="190" x2="610" y2="225" stroke="#d0d7de"></line><g transform="translate(643, 201)"><svg width="14" height="14" viewBox="0 0 16 16" fill="rgba(130, 80, 223, 1)">
+    <path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path>
+  </svg></g><line x1="690" y1="190" x2="690" y2="225" stroke="#d0d7de"></line><text x="735" y="212" class="text" text-anchor="middle">
+            2025-08-11
+          </text><line x1="780" y1="190" x2="780" y2="225" stroke="#d0d7de"></line><text x="825" y="212" class="text" text-anchor="middle">
+            2025-08-14
+          </text><line x1="870" y1="190" x2="870" y2="225" stroke="#d0d7de"></line><rect x="20" y="225" width="850" height="35" fill="#f6f8fa" stroke="#d0d7de"></rect><text x="28" y="247" class="text" text-anchor="start">
+            openshift-psap/llm-loa...
+          </text><line x1="220" y1="225" x2="220" y2="260" stroke="#d0d7de"></line><text x="292" y="247" class="text" text-anchor="end">
+            47 ⭐
+          </text><line x1="300" y1="225" x2="300" y2="260" stroke="#d0d7de"></line><text x="308" y="247" class="text" text-anchor="start">
+            fix(result): Prevent ZeroDivisio...
+          </text><line x1="550" y1="225" x2="550" y2="260" stroke="#d0d7de"></line><text x="580" y="247" class="text" text-anchor="middle">
+            #103
+          </text><line x1="610" y1="225" x2="610" y2="260" stroke="#d0d7de"></line><g transform="translate(643, 236)"><svg width="14" height="14" viewBox="0 0 16 16" fill="rgba(130, 80, 223, 1)">
+    <path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path>
+  </svg></g><line x1="690" y1="225" x2="690" y2="260" stroke="#d0d7de"></line><text x="735" y="247" class="text" text-anchor="middle">
+            2025-07-31
+          </text><line x1="780" y1="225" x2="780" y2="260" stroke="#d0d7de"></line><text x="825" y="247" class="text" text-anchor="middle">
+            2025-08-01
+          </text><line x1="870" y1="225" x2="870" y2="260" stroke="#d0d7de"></line><rect x="20" y="260" width="850" height="35" fill="#ffffff" stroke="#d0d7de"></rect><text x="28" y="282" class="text" text-anchor="start">
+            QuantumNous/new-api-docs
+          </text><line x1="220" y1="260" x2="220" y2="295" stroke="#d0d7de"></line><text x="292" y="282" class="text" text-anchor="end">
+            8 ⭐
+          </text><line x1="300" y1="260" x2="300" y2="295" stroke="#d0d7de"></line><text x="308" y="282" class="text" text-anchor="start">
+            fix: 修复查看源代码链接指向正确的文档仓库
+          </text><line x1="550" y1="260" x2="550" y2="295" stroke="#d0d7de"></line><text x="580" y="282" class="text" text-anchor="middle">
+            #8
+          </text><line x1="610" y1="260" x2="610" y2="295" stroke="#d0d7de"></line><g transform="translate(643, 271)"><svg width="14" height="14" viewBox="0 0 16 16" fill="rgba(130, 80, 223, 1)">
+    <path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path>
+  </svg></g><line x1="690" y1="260" x2="690" y2="295" stroke="#d0d7de"></line><text x="735" y="282" class="text" text-anchor="middle">
+            2025-08-04
+          </text><line x1="780" y1="260" x2="780" y2="295" stroke="#d0d7de"></line><text x="825" y="282" class="text" text-anchor="middle">
+            2025-08-05
+          </text><line x1="870" y1="260" x2="870" y2="295" stroke="#d0d7de"></line><rect x="20" y="295" width="850" height="35" fill="#f6f8fa" stroke="#d0d7de"></rect><text x="28" y="317" class="text" text-anchor="start">
+            RooCodeInc/Roo-Code
+          </text><line x1="220" y1="295" x2="220" y2="330" stroke="#d0d7de"></line><text x="292" y="317" class="text" text-anchor="end">
+            18,816 ⭐
+          </text><line x1="300" y1="295" x2="300" y2="330" stroke="#d0d7de"></line><text x="308" y="317" class="text" text-anchor="start">
+            feat: add cancel button for cont...
+          </text><line x1="550" y1="295" x2="550" y2="330" stroke="#d0d7de"></line><text x="580" y="317" class="text" text-anchor="middle">
+            #6927
+          </text><line x1="610" y1="295" x2="610" y2="330" stroke="#d0d7de"></line><g transform="translate(643, 306)"><svg width="14" height="14" viewBox="0 0 16 16" fill="rgba(26, 127, 55, 1)">
+    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
+  </svg></g><line x1="690" y1="295" x2="690" y2="330" stroke="#d0d7de"></line><text x="735" y="317" class="text" text-anchor="middle">
+            2025-08-11
+          </text><line x1="780" y1="295" x2="780" y2="330" stroke="#d0d7de"></line><text x="825" y="317" class="text" text-anchor="middle">
+            -
+          </text><line x1="870" y1="295" x2="870" y2="330" stroke="#d0d7de"></line><rect x="20" y="330" width="850" height="35" fill="#ffffff" stroke="#d0d7de"></rect><text x="28" y="352" class="text" text-anchor="start">
+            Kilo-Org/kilocode
+          </text><line x1="220" y1="330" x2="220" y2="365" stroke="#d0d7de"></line><text x="292" y="352" class="text" text-anchor="end">
+            7,073 ⭐
+          </text><line x1="300" y1="330" x2="300" y2="365" stroke="#d0d7de"></line><text x="308" y="352" class="text" text-anchor="start">
+            fix: resolve context condensing ...
+          </text><line x1="550" y1="330" x2="550" y2="365" stroke="#d0d7de"></line><text x="580" y="352" class="text" text-anchor="middle">
+            #1971
+          </text><line x1="610" y1="330" x2="610" y2="365" stroke="#d0d7de"></line><g transform="translate(643, 341)"><svg width="14" height="14" viewBox="0 0 16 16" fill="rgba(26, 127, 55, 1)">
+    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
+  </svg></g><line x1="690" y1="330" x2="690" y2="365" stroke="#d0d7de"></line><text x="735" y="352" class="text" text-anchor="middle">
+            2025-08-15
+          </text><line x1="780" y1="330" x2="780" y2="365" stroke="#d0d7de"></line><text x="825" y="352" class="text" text-anchor="middle">
+            -
+          </text><line x1="870" y1="330" x2="870" y2="365" stroke="#d0d7de"></line></svg>

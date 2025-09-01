@@ -7,11 +7,6 @@ export function escapeXml(text: string): string {
     .replace(/'/g, '&#39;')
 }
 
-export function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text
-  return text.substring(0, maxLength - 3) + '...'
-}
-
 import { iconDefinitions } from '../../lib/icons/definitions.js'
 
 export function getStatusIcon(status: string): string {

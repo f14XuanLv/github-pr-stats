@@ -1,5 +1,5 @@
 import type { ProcessedPR, PRStats, APIParams, RepoAggregate } from '../types.js'
-import { escapeXml, truncateText, getStatusIcon, getTheme, type Theme } from './svg-utils.js'
+import { escapeXml, getStatusIcon, getTheme, type Theme } from './svg-utils.js'
 
 interface FieldConfig {
   key: string
@@ -227,6 +227,15 @@ export class SVGGenerator {
           .header { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${theme.headerColor}; }
           .text { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${theme.textColor}; }
         </style>
+        <clipPath id="cell-clip-250">
+          <rect x="0" y="0" width="234" height="35"/>
+        </clipPath>
+        <clipPath id="cell-clip-240">
+          <rect x="0" y="0" width="224" height="35"/>
+        </clipPath>
+        <clipPath id="cell-clip-200">
+          <rect x="0" y="0" width="184" height="35"/>
+        </clipPath>
       </defs>`
   }
 
@@ -339,9 +348,7 @@ export class SVGGenerator {
           const icon = getStatusIcon(pr.status)
           svg += `<g transform="translate(${textX - 7}, ${y + 11})">${icon}</g>`
         } else {
-          svg += `<text x="${textX}" y="${y + 22}" class="text" text-anchor="${this.getTextAnchor(field.align)}">
-            ${escapeXml(value)}
-          </text>`
+          svg += this.renderClippedText(value, textX, y + 22, currentX, y, field.key, field.align)
         }
         
         if (currentX + field.width < this.calculateTableWidth(fields) - 20 + baseX) {
@@ -374,14 +381,7 @@ export class SVGGenerator {
         const value = this.formatRepoFieldValue(repo, field.key)
         const textX = this.getTextX(currentX, field.width, field.align)
         
-        // Apply truncation for pr_numbers to prevent overflow
-        const displayValue = field.key === 'pr_numbers' 
-          ? truncateText(value, Math.floor(field.width / 8)) // Approximately 8px per character
-          : value
-        
-        svg += `<text x="${textX}" y="${y + 22}" class="text" text-anchor="${this.getTextAnchor(field.align)}">
-          ${escapeXml(displayValue)}
-        </text>`
+        svg += this.renderClippedText(value, textX, y + 22, currentX, y, field.key, field.align)
         
         if (currentX + field.width < this.calculateTableWidth(fields) - 20 + baseX) {
           svg += `<line x1="${currentX + field.width}" y1="${y}" x2="${currentX + field.width}" y2="${y + 35}" 
@@ -398,15 +398,11 @@ export class SVGGenerator {
   private static formatRepoFieldValue(repo: RepoAggregate, fieldKey: string): string {
     switch (fieldKey) {
       case 'repo':
-        return truncateText(repo.repo, 25)
+        return repo.repo
       case 'stars':
         return repo.stars.toLocaleString() + ' ⭐'
       case 'pr_numbers':
-        // Calculate how many PR numbers can fit in the cell (240px width)
-        // Estimate: each "#1234," takes about 45px, so we can fit about 5 numbers
-        const maxNumbers = 5
-        const prNumbers = repo.pr_numbers.slice(0, maxNumbers).map(n => `#${n}`).join(', ')
-        return repo.pr_numbers.length > maxNumbers ? prNumbers + '...' : prNumbers
+        return repo.pr_numbers.map(n => `#${n}`).join(', ')
       case 'total':
         return repo.total.toString()
       case 'merged':
@@ -427,11 +423,11 @@ export class SVGGenerator {
   private static formatFieldValue(pr: ProcessedPR, fieldKey: string): string {
     switch (fieldKey) {
       case 'repo':
-        return truncateText(pr.repo, 25)
+        return pr.repo
       case 'stars':
         return pr.stars.toLocaleString() + ' ⭐'
       case 'pr_title':
-        return truncateText(pr.pr_title, 35)
+        return pr.pr_title
       case 'pr_number':
         return `#${pr.pr_number}`
       case 'status':
@@ -464,5 +460,41 @@ export class SVGGenerator {
       case 'right':
         return 'end'
     }
+  }
+
+  private static getClipPathId(fieldKey: string): string | null {
+    switch (fieldKey) {
+      case 'pr_title':
+        return 'cell-clip-250'
+      case 'pr_numbers':
+        return 'cell-clip-240'
+      case 'repo':
+        return 'cell-clip-200'
+      default:
+        return null
+    }
+  }
+
+  private static renderClippedText(
+    text: string, 
+    x: number, 
+    y: number, 
+    cellX: number, 
+    cellY: number, 
+    fieldKey: string, 
+    align: 'left' | 'center' | 'right'
+  ): string {
+    const clipPathId = this.getClipPathId(fieldKey)
+    if (!clipPathId) {
+      return `<text x="${x}" y="${y}" class="text" text-anchor="${this.getTextAnchor(align)}">
+        ${escapeXml(text)}
+      </text>`
+    }
+
+    return `<g clip-path="url(#${clipPathId})" transform="translate(${cellX}, ${cellY})">
+      <text x="${x - cellX}" y="${y - cellY}" class="text" text-anchor="${this.getTextAnchor(align)}">
+        ${escapeXml(text)}
+      </text>
+    </g>`
   }
 }

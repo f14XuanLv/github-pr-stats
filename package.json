@@ -1,6 +1,6 @@
 {
   "name": "github-pr-stats",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Display your open source contributions with beautiful GitHub PR statistics",
   "type": "module",
   "scripts": {
